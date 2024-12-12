@@ -6,6 +6,7 @@ import com.microsoft.semantickernel.aiservices.openai.chatcompletion.OpenAIChatC
 import com.microsoft.semantickernel.plugin.KernelPlugin;
 import com.microsoft.semantickernel.plugin.KernelPluginFactory;
 import com.microsoft.semantickernel.services.chatcompletion.ChatCompletionService;
+import com.microsoft.semantickernel.services.chatcompletion.ChatHistory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,5 +34,10 @@ public class SemanticKernelConfiguration {
     @Bean
     public KernelPlugin kernelPlugin() {
         return KernelPluginFactory.createFromObject(new SimplePlugin(), "Simple Plugin");
+    }
+
+    @Bean
+    public ChatHistory chatHistory() {
+        return new ChatHistory();
     }
 }
