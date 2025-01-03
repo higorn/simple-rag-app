@@ -1,8 +1,12 @@
 package com.epam.training.gen.ai.application;
 
 import com.azure.ai.openai.OpenAIAsyncClient;
+import com.epam.training.gen.ai.domain.HomeAssistantPlugin;
 import com.microsoft.semantickernel.Kernel;
 import com.microsoft.semantickernel.aiservices.openai.chatcompletion.OpenAIChatCompletion;
+import com.microsoft.semantickernel.orchestration.InvocationContext;
+import com.microsoft.semantickernel.orchestration.InvocationReturnMode;
+import com.microsoft.semantickernel.orchestration.ToolCallBehavior;
 import com.microsoft.semantickernel.plugin.KernelPlugin;
 import com.microsoft.semantickernel.plugin.KernelPluginFactory;
 import com.microsoft.semantickernel.services.chatcompletion.ChatCompletionService;
@@ -33,11 +37,19 @@ public class SemanticKernelConfiguration {
 
     @Bean
     public KernelPlugin kernelPlugin() {
-        return KernelPluginFactory.createFromObject(new SimplePlugin(), "Simple Plugin");
+        return KernelPluginFactory.createFromObject(new HomeAssistantPlugin(), "HomeAssistantPlugin");
     }
 
     @Bean
     public ChatHistory chatHistory() {
         return new ChatHistory();
+    }
+
+    @Bean
+    public InvocationContext invocationContext() {
+        return InvocationContext.builder()
+                .withReturnMode(InvocationReturnMode.LAST_MESSAGE_ONLY)
+                .withToolCallBehavior(ToolCallBehavior.allowAllKernelFunctions(true))
+                .build();
     }
 }
