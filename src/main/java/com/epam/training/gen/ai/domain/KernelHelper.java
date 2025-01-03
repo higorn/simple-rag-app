@@ -44,7 +44,7 @@ public class KernelHelper {
 
     public static KernelFunctionArguments getKernelFunctionArguments(String input, ChatHistory chatHistory) {
         return KernelFunctionArguments.builder()
-                .withVariable("reqquest", input)
+                .withVariable("request", input)
                 .withVariable("chatHistory", chatHistory)
                 .build();
     }
