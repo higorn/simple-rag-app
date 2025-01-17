@@ -90,6 +90,11 @@
             <artifactId>azure-ai-openai</artifactId>
             <version>1.0.0-beta.12</version>
         </dependency>
+        <dependency>
+            <groupId>io.qdrant</groupId>
+            <artifactId>client</artifactId>
+            <version>1.13.0</version>
+        </dependency>
         <!-- Tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
